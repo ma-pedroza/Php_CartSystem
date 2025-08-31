@@ -7,7 +7,7 @@
     private array $kart;
 
     public function __construct(){
-        $this->$products = [
+        $this->products = [
             ['id' => 1, 'nome' => 'Processador Intel I5', 'preco' => 879.99, 'estoque' => 45],
             ['id' => 2, 'nome' => 'Processador AMD Ryzen 5', 'preco' => 780.99, 'estoque' => 33],
             ['id' => 3, 'nome' => 'Memória Ram 8GB', 'preco' => 259.99, 'estoque' => 15],
@@ -34,7 +34,7 @@
 
 
     }
-    
+
     public function calculateSubtotal($id, $quantity){
         $product = $this->getProduct($id);
         return $product['preco'] * $quantity;
@@ -42,8 +42,8 @@
 
     public function removeItemFromKart ($id)
     {
-        $product = getProduct($id)
-        unset($this->kart[id]);
+        $product = $this->getProduct($id);
+        unset($this->kart['id']);
         echo "Item com ID {$id} removido do carrinho.";
     }
 
