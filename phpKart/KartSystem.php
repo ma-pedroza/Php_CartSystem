@@ -19,22 +19,31 @@
     }
 
     public function getProduct($id){
-        foreach($products as $product){
+        foreach($this->products as $product){
             if($product['id'] == $id){
                 return $product;
             }
-            return echo('Produto não existe.');
-
         }
+
+        echo('Produto não existe.');
     }
     public function addKart($id, $quantity){
+        $product = $this->getProduct($id);
 
+        $this->kart[] = ['id'=> $product['id'], 'nome' => $product['nome'], 'quantidade' => $quantity];
+
+
+    }
+    
+    public function calculateSubtotal($id, $quantity){
+        $product = $this->getProduct($id);
+        return $product['preco'] * $quantity;
     }
 
     public function removeItemFromKart ($id)
     {
         $product = getProduct($id)
-        unset($this->kart[id])
+        unset($this->kart[id]);
         echo "Item com ID {$id} removido do carrinho.";
     }
 
