@@ -4,6 +4,8 @@
 
     private array $products;
 
+    private array $kart;
+
     public function __construct(){
         $this->$products = [
             ['id' => 1, 'nome' => 'Processador Intel I5', 'preco' => 879.99, 'estoque' => 45],
@@ -13,7 +15,20 @@
             ['id' => 5, 'nome' => 'Memória Ram 32GB', 'preco' => 899.99, 'estoque' => 31],
             ['id' => 6, 'nome' => 'Placa de Vídeo NVDIA RTX 3060 12GB', 'preco' => 1.799.99, 'estoque' => 113],
             ['id' => 7, 'nome' => 'Placa de Vídeo AMD RX 6600 8GB', 'preco' => 1.499.99, 'estoque' => 92]
-        ]
+        ]; 
+    }
+
+    public function getProduct($id){
+        foreach($products as $product){
+            if($product['id'] == $id){
+                return $product;
+            }
+            return echo('Produto não existe.');
+
+        }
+    }
+    public function addKart($id, $quantity){
+
     }
 
 
