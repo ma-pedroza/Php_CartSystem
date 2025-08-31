@@ -42,12 +42,16 @@
 
     public function removeItemFromKart ($id)
     {
-        $product = $this->getProduct($id);
-        if($product){
-            unset($this->kart['id']);
-        echo "Item com ID {$id} removido do carrinho.";   
+        foreach ($this->kart as $index => $item)
+        {
+            if ($item['id'] == $id) {
+                unset($this->kart[$index]);
+                $this->kart = array_values($this->kart);
+                echo "Item com ID {$id} removido do carrinhos.";
+                return;
+            }
         }
-        echo "Item não existe no carrinho";
+        echo "Item com ID {$id} não encontrado no carrinho.";
     }
     
     public function aplicarDesconto($subtotal)
@@ -55,6 +59,19 @@
         $totalFinal = $subtotal - ($subtotal*0.10);
         return $totalFinal;
     }
+
+    public function listItens()
+{
+    if (empty($this->kart)) {
+        echo "O carrinho está vazio.";
+        return;
+    }
+
+    echo "<h3>Itens no Carrinho:</h3>";
+    foreach ($this->kart as $item) {
+        echo "- {$item['nome']} (Quantidade: {$item['quantidade']})<br>";
+    }
+}
 
 
 }
