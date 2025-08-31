@@ -43,10 +43,13 @@
     public function removeItemFromKart ($id)
     {
         $product = $this->getProduct($id);
-        unset($this->kart['id']);
-        echo "Item com ID {$id} removido do carrinho.";
+        if($product){
+            unset($this->kart['id']);
+        echo "Item com ID {$id} removido do carrinho.";   
+        }
+        echo "Item não existe no carrinho";
     }
-
+    
     public function aplicarDesconto($subtotal)
     {
         $totalFinal = $subtotal - ($subtotal*0.10);
