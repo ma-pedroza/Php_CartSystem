@@ -92,10 +92,9 @@
         $product = $this->getProduct($id);
 
         $this->kart[] = ['id'=> $product['id'], 'nome' => $product['nome'], 'quantidade' => $quantity, 'subtotal' => $this->calculateSubtotal($id, $quantity)];
-
         $this->updateStock($id, $quantity, '-');
 
-
+        
         foreach($this->kart as $p){
             echo json_encode($p);
         }
@@ -106,38 +105,58 @@
         return $product['preco'] * $quantity;
     }
 
+    public function calculateDiscount($total)
+    {
+        $totalFinal = $total - ($total * 0.10);
+        return $totalFinal;
+    }
+
+    public function calculateTotal($desconto = null){
+        $total = 0;
+        foreach($this->kart as $product){
+            $total += $product['subtotal'];
+        }
+
+        if($desconto == "DESCONTO10"){
+            $total = $this->calculateDiscount($total);
+        }
+
+        echo("Total: R$ {$total}");
+        return $total;
+    }
+
     public function removeItemFromKart ($id)
     {
+
         foreach ($this->kart as $index => $item)
         {
             if ($item['id'] == $id) {
+                $quantidade = $item['quantidade'];
+
+
                 unset($this->kart[$index]);
-                $this->kart = array_values($this->kart);
-                echo "Item com ID {$id} removido do carrinhos.";
+                $this->kart = array_values($this->kart);    
+                
+                $this->updateStock($id, $quantidade, '+');
+
+                echo "Item com ID {$id} removido do carrinho e Estoque restaurado.";
                 return;
             }
         }
         echo "Item com ID {$id} não encontrado no carrinho.";
     }
     
-    public function aplicarDesconto($subtotal)
-    {
-        $totalFinal = $subtotal - ($subtotal*0.10);
-        return $totalFinal;
-    }
+    public function listItens(){
+        if (empty($this->kart)) {
+            echo "O carrinho está vazio.";
+            return;
+        }
 
-    public function listItens()
-{
-    if (empty($this->kart)) {
-        echo "O carrinho está vazio.";
-        return;
+        echo "<h3>Itens no Carrinho:</h3>";
+        foreach ($this->kart as $item) {
+            echo "- {$item['nome']} (Quantidade: {$item['quantidade']})<br>";
+        }
     }
-
-    echo "<h3>Itens no Carrinho:</h3>";
-    foreach ($this->kart as $item) {
-        echo "- {$item['nome']} (Quantidade: {$item['quantidade']})<br>";
-    }
-}
 
 
 }
