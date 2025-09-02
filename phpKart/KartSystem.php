@@ -27,12 +27,78 @@
 
         echo('Produto não existe.');
     }
+
+    public function validateProductExist($id){
+        foreach($this->products as $product){
+            if($product['id'] == $id){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function validateStock($id){
+        foreach($this->products as $product){
+            if($product['id'] == $id && $product['estoque'] > 0){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function validateQuantity($id, $quantity){
+        foreach($this->products as $product){
+            if($product['id'] == $id && $quantity <= $product['estoque']){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public function updateStock($id, $quantity, $operator){
+        if($operator == '-'){
+            foreach($this->products as &$product){
+                if($product['id'] == $id){
+                    $product['estoque'] -= $quantity;
+                    break;
+                }
+            }
+        }
+        elseif($operator == '+'){
+            foreach($this->products as &$product){
+                if($product['id'] == $id){
+                    $product['estoque'] += $quantity;
+                    break;
+                }
+            }
+        }
+    }
+
     public function addKart($id, $quantity){
+        if($this->validateProductExist($id) == false){
+            echo("Produto não existe.");
+            return;
+        }
+
+        if($this->validateStock($id) == false){
+            echo("Produto não possui estoque.");
+            return;
+        }
+        if($this->validateQuantity($id, $quantity) == false){
+            echo("Não é possível adquirir mais do que o estoque.");
+            return;
+        }
+
         $product = $this->getProduct($id);
 
-        $this->kart[] = ['id'=> $product['id'], 'nome' => $product['nome'], 'quantidade' => $quantity];
+        $this->kart[] = ['id'=> $product['id'], 'nome' => $product['nome'], 'quantidade' => $quantity, 'subtotal' => $this->calculateSubtotal($id, $quantity)];
+
+        $this->updateStock($id, $quantity, '-');
 
 
+        foreach($this->kart as $p){
+            echo json_encode($p);
+        }
     }
 
     public function calculateSubtotal($id, $quantity){
