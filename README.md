@@ -18,13 +18,17 @@ O programa possui as seguintes fucionalidades:
 Limitações do software:
     - Os dados não são persistentes, ou seja, cada vez que você abrir o carrinho retorna para vazio
     - O software não possui uma interface (UI). Se trata apenas de uma tela de prompt.
+    - O desconto é fixo em 10%.
 
 
 
 
-
-    - O desconto é fixo em 10%
+Exemplos de uso:
+    
     - O estoque do produto não pode ser menor que o número de produtos adicionados
-    - Toda vez que um produto é adicionado ao carrinho o estoque é atualizado
-    - 
+    - O estoque de um produto deve ser maior do que zero
+    - Toda vez que um produto é adicionado ao carrinho o estoque deve ser atualizado
+    - O desconto aplicado deve sempre ser 10% do valor 
+    - A remoção de um produto do carrinho deve sempre restituir o estoque e retornar uma mensagem de "produto removido"
+    - Se a quantia de um produto a ser adicionado for maior que o estoque o sistema deve retornar um erro "estoque insuficiente"
 
