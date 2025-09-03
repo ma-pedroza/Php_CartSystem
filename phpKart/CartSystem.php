@@ -7,8 +7,7 @@ class CartSystem
 
     private array $cart;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->products = [
             ['id' => 1, 'nome' => 'Processador Intel I5', 'preco' => 879.99, 'estoque' => 45],
             ['id' => 2, 'nome' => 'Processador AMD Ryzen 5', 'preco' => 780.99, 'estoque' => 33],
@@ -20,8 +19,7 @@ class CartSystem
         ];
     }
 
-    public function getProduct($id)
-    {
+    public function getProduct($id) {
         foreach ($this->products as $product) {
             if ($product['id'] == $id) {
                 return $product;
@@ -31,8 +29,7 @@ class CartSystem
         echo ('Produto não existe.');
     }
 
-    public function validateProductExist($id)
-    {
+    public function validateProductExist($id) {
         foreach ($this->products as $product) {
             if ($product['id'] == $id) {
                 return true;
@@ -41,8 +38,7 @@ class CartSystem
         return false;
     }
 
-    public function validateStock($id)
-    {
+    public function validateStock($id) {
         foreach ($this->products as $product) {
             if ($product['id'] == $id && $product['estoque'] > 0) {
                 return true;
@@ -51,8 +47,7 @@ class CartSystem
         return false;
     }
 
-    public function validateQuantity($id, $quantity)
-    {
+    public function validateQuantity($id, $quantity) {
         foreach ($this->products as $product) {
             if ($product['id'] == $id && $quantity <= $product['estoque']) {
                 return true;
@@ -61,8 +56,7 @@ class CartSystem
         return false;
     }
 
-    public function updateStock($id, $quantity, $operator)
-    {
+    public function updateStock($id, $quantity, $operator) {
         if ($operator == '-') {
             $product = $this->getProduct($id);
             $product['estoque'] -= $quantity;
@@ -78,8 +72,7 @@ class CartSystem
         }
     }
 
-    public function addCart($id, $quantity)
-    {
+    public function addCart($id, $quantity) {
         if ($this->validateProductExist($id) == false) {
             echo ("Produto não existe.");
             return;
@@ -105,20 +98,19 @@ class CartSystem
         }
     }
 
-    public function calculateSubtotal($id, $quantity)
-    {
+    public function calculateSubtotal($id, $quantity) {
+        
         $product = $this->getProduct($id);
         return $product['preco'] * $quantity;
     }
 
-    public function calculateDiscount($total)
-    {
+    public function calculateDiscount($total) {
         $totalFinal = $total - ($total * 0.10);
         return $totalFinal;
     }
 
-    public function calculateTotal($desconto = null)
-    {
+    public function calculateTotal($desconto = null) {
+
         $total = 0;
         foreach ($this->cart as $product) {
             $total += $product['subtotal'];
@@ -132,8 +124,8 @@ class CartSystem
         return $total;
     }
 
-    public function removeItemFromCart($id)
-    {
+    public function removeItemFromCart($id) {
+
         foreach ($this->cart as $index => $item) {
             if ($item['id'] == $id) {
                 $quantidade = $item['quantidade'];
@@ -151,8 +143,8 @@ class CartSystem
         echo "Item com ID {$id} não encontrado no carrinho.";
     }
 
-    public function listItens()
-    {
+    public function listItens() {
+        
         if (empty($this->cart)) {
             echo "O carrinho está vazio.";
             return;
