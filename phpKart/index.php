@@ -1,16 +1,13 @@
 <?php
-include 'kartSystem.php';
+include 'CartSystem.php';
 
-$kartSystem = new KartSystem();
+$cartSystem = new CartSystem();
 
-$kartSystem->addKart(7, 1);
+$cartSystem->addCart(7, 1);
 
-$kartSystem->addKart(3, 1);
-
-
-$kartSystem->listItens();
-
-$kartSystem->calculateTotal("DESCONTO10");
+$cartSystem->addCart(3, 1);
 
 
-?>
+$cartSystem->listItens();
+
+$cartSystem->calculateTotal("DESCONTO10");
