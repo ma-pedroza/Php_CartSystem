@@ -1,9 +1,12 @@
+INSTRUÇÕES:
+
 Copie a pasta do Projeto para dentro da pasta HTDOCS dentro da sua instalação do XAMPP.
 Feito isso, inicie o XAMPP, ative o Apache e depois o MySQL. Em seguida acesse o seu navegador e digite: http://localhost/CartSystem.php.
 
-Alunos:
+ALUNOS:
 Rodrigo Bassalobre Garcia - RA: 2007642
-Matheus Titio da Silva - RA: 69
+Matheus Titio da Silva - RA: 69248==D
+
 
 O programa possui as seguintes fucionalidades:
     - Adicionar produtos aos Carrinho
