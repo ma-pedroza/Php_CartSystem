@@ -3,11 +3,12 @@ include 'CartSystem.php';
 
 $cartSystem = new CartSystem();
 
-$cartSystem->addCart(7, 1);
+$cartSystem->addCart(1,2);
 
-$cartSystem->addCart(3, 1);
+$cartSystem->addCart(3, 16);
 
+$cartSystem->removeItemFromCart(1);
 
-$cartSystem->listItens();
+$cartSystem->addCart(1,2);
 
-$cartSystem->calculateTotal("DESCONTO10");
+$cartSystem->finishCart('DESCONTO10');
