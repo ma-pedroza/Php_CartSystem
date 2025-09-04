@@ -1,34 +1,51 @@
-INSTRUÇÕES:
+# 🛒 CartSystem
 
-Copie a pasta do Projeto para dentro da pasta HTDOCS dentro da sua instalação do XAMPP.
-Feito isso, inicie o XAMPP, ative o Apache e depois o MySQL. Em seguida acesse o seu navegador e digite: http://localhost/CartSystem.php.
+Sistema simples de gerenciamento de carrinho de compras desenvolvido em PHP, com funcionalidades básicas de controle de estoque, cálculo de subtotal, aplicação de desconto e finalização de compra.
 
-ALUNOS:
-Rodrigo Bassalobre Garcia - RA: 2007642
-Matheus Titio da Silva - RA: 69248==D
+## 🚀 Como executar
 
+1. Copie a pasta do projeto para dentro da pasta `htdocs` da sua instalação do **XAMPP**.
+2. Inicie o **XAMPP** e ative os serviços **Apache**.
+3. No navegador, acesse:  
+   `http://localhost/Php_CartSystem/Cart/index.php`
 
-O programa possui as seguintes fucionalidades:
-    - Adicionar produtos aos Carrinho
-    - Remover produtos do Carrinho
-    - Listar os itens que estão no carrinho
-    - Cacular o preço total
-    - Aplicar o desconto
+---
 
-Limitações do software:
-    - Os dados não são persistentes, ou seja, cada vez que você abrir o carrinho retorna para vazio
-    - O software não possui uma interface (UI). Se trata apenas de uma tela de prompt.
-    - O desconto é fixo em 10%.
+## 👨‍🎓 Alunos
 
+- **Rodrigo Bassalobre Garcia** – RA: 2007642  
+- **Matheus Gomes Pedroza** – RA: 1998912
 
+---
 
+## ✅ Funcionalidades
 
-Exemplos de uso:
-    
-    - O estoque do produto não pode ser menor que o número de produtos adicionados
-    - O estoque de um produto deve ser maior do que zero
-    - Toda vez que um produto é adicionado ao carrinho o estoque deve ser atualizado
-    - O desconto aplicado deve sempre ser 10% do valor 
-    - A remoção de um produto do carrinho deve sempre restituir o estoque e retornar uma mensagem de "produto removido"
-    - Se a quantia de um produto a ser adicionado for maior que o estoque o sistema deve retornar um erro "estoque insuficiente"
+- Adicionar produtos ao carrinho com verificação de estoque
+- Remover produtos do carrinho e restaurar o estoque
+- Listar os itens presentes no carrinho com quantidade e subtotal
+- Calcular o subtotal por produto e o total geral da compra
+- Aplicar cupom de desconto fixo de 10% (`DESCONTO10`)
+- Atualizar o estoque automaticamente ao adicionar ou remover produtos
+- Exibir resumo completo da compra ao finalizar o carrinho
 
+---
+
+## ⚠️ Limitações
+
+- Os dados não são persistentes (sem banco de dados)
+- O sistema não possui interface gráfica (UI)
+- O desconto é fixo em 10% e não há suporte para múltiplos cupons
+
+---
+
+## 💡 Regras de Negócio
+
+- O estoque do produto deve ser maior que zero para permitir a adição
+- A quantidade solicitada não pode exceder o estoque disponível
+- Ao adicionar um produto, o estoque é automaticamente reduzido
+- Ao remover um produto, o estoque é restaurado
+- O sistema retorna mensagens claras para cada ação (ex: “produto removido”, “estoque insuficiente”)
+- O cupom `DESCONTO10` aplica 10% de desconto sobre o valor total da compra
+- Produtos repetidos no carrinho têm a quantidade somada, não duplicada
+
+---
